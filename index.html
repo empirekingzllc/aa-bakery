@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="description" content="Private, unpublished concept preview prepared by Automation Architects. Not affiliated with or published by the business.">
+<title>{{BUSINESS_NAME}} — Concept Demo</title>
+<style>
+:root{
+  --black:#141012; --cocoa:#2a1a12; --ink:#1d1416; --muted:#5a4638;
+  --pink:#ff5fa2; --pink-light:#ffa6cf; --pink-soft:#ffe3ef;
+  --sky:#6fd0f2; --sky-soft:#e2f6fd;
+  --gold:#b9772f; --gold-deep:#7a4a17; --cream:#fff4e6; --panel:rgba(255,246,236,.96); --line:#efd9c4;
+  --focus:#1a73e8; --radius:22px;
+  --notice-offset:3rem;
+  --bg-full:url("assets/bg_mobile.webp");
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--notice-offset) + 1rem);overflow-x:clip}
+body{margin:0;color:var(--ink);font-family:"Avenir Next","Nunito","Segoe UI","Helvetica Neue",Arial,sans-serif;line-height:1.6;background:var(--cocoa);padding-top:var(--notice-offset);min-height:100vh;overflow-x:clip}
+/* Full-page fixed photo. Desktop uses the wide CC0 crop; narrower viewports use the tall crop. */
+.page-bg{position:fixed;inset:0;z-index:-1;background-color:var(--cocoa);
+  background-image:
+    linear-gradient(90deg,rgba(24,13,8,.88) 0%,rgba(24,13,8,.82) 50%,rgba(24,13,8,.30) 62%,rgba(24,13,8,.08) 100%),
+    url("assets/bg_desktop.webp");
+  background-size:auto,cover;
+  background-position:center,center;
+  background-repeat:no-repeat}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--gold-deep)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+.skip-link{position:absolute;left:1rem;top:-200px;z-index:2000;background:#fff;color:var(--black);padding:.7rem 1rem;border-radius:10px;font-weight:700;text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.skip-link:focus,.skip-link:focus-visible{top:calc(var(--notice-offset) + .5rem)}
+.concept-notice{position:fixed;top:0;left:0;right:0;z-index:1500;min-height:var(--notice-offset);display:flex;align-items:center;justify-content:center;text-align:center;padding:.55rem 1rem;background:var(--black);color:var(--cream);border-bottom:3px solid var(--pink);font-size:.9rem;font-weight:600;letter-spacing:.01em;line-height:1.35}
+.col{width:min(100% - 2.5rem,540px);margin-left:clamp(1.25rem,6vw,6rem)}
+.site-header{padding:1.1rem 0 0}
+.site-header .col{display:flex;flex-wrap:wrap;gap:.6rem 1rem;align-items:center;justify-content:space-between}
+.wordmark{font-weight:900;letter-spacing:.06em;text-transform:uppercase;color:var(--cream);font-size:1rem;overflow-wrap:anywhere;max-width:100%}
+.nav{display:flex;flex-wrap:wrap;gap:.4rem}
+.nav a{color:var(--black);background:var(--cream);text-decoration:none;font-weight:700;font-size:.9rem;padding:.35rem .85rem;border-radius:999px}
+.nav a:hover{background:#fff}
+.hero{min-height:calc(100vh - var(--notice-offset) - 4rem);display:flex;align-items:center;padding:2rem 0 3rem}
+.eyebrow{margin:0 0 .9rem;color:var(--sky);font-weight:800;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;overflow-wrap:anywhere}
+h1{margin:0;color:var(--cream);line-height:.9;max-width:100%}
+h1 .t{display:block;font-family:"Arial Black","Avenir Next Heavy","Segoe UI Black","Helvetica Neue",Arial,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.01em;font-size:clamp(1.55rem,4.5vw,3rem);text-shadow:0 4px 0 rgba(255,95,162,.55);overflow-wrap:anywhere}
+h1 .b{display:block;font-family:"Snell Roundhand","Segoe Script","Brush Script MT",cursive;font-weight:700;color:var(--pink-light);font-size:clamp(2rem,5vw,3.4rem);margin-top:.15em;padding-left:.1em;overflow-wrap:anywhere}
+.handle-line{margin:.9rem 0 0;color:var(--cream);font-weight:700;font-size:1.05rem;overflow-wrap:anywhere}
+.handle-line .h{color:var(--sky)}
+.hero-chip{margin-top:1.2rem;background:rgba(20,12,9,.82);border:1px solid rgba(255,166,207,.35);border-radius:18px;padding:1rem 1.1rem;max-width:34rem}
+.lede{margin:0;color:var(--cream);font-size:1.12rem;font-weight:600;overflow-wrap:anywhere}
+.actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1rem}
+.btn{font:inherit;font-weight:800;font-size:.98rem;border-radius:999px;padding:.8rem 1.25rem;border:2px solid transparent;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;min-height:44px}
+.btn-primary{background:var(--pink);color:var(--black)}
+.btn-ghost{background:var(--cream);color:var(--black);border-color:var(--cream)}
+.btn-ghost:hover{background:#fff}
+.btn[disabled],.btn[aria-disabled="true"]{cursor:not-allowed;opacity:.8}
+main section.panel{background:var(--panel);border-radius:var(--radius);padding:1.6rem;margin:0 0 1.5rem;box-shadow:0 14px 40px rgba(0,0,0,.35);border-top:6px solid var(--pink)}
+main section.panel:nth-of-type(2){border-top-color:var(--sky)}
+main section.panel:nth-of-type(3){border-top-color:var(--gold)}
+h2{margin:0 0 .6rem;font-family:"Arial Black","Segoe UI Black","Helvetica Neue",Arial,sans-serif;font-weight:900;text-transform:uppercase;color:var(--black);font-size:clamp(1.5rem,3.2vw,2rem);line-height:1.1;letter-spacing:.02em}
+h3{margin:0;font-size:1rem;color:var(--black)}
+p{margin:.4rem 0}
+.muted{color:var(--muted)}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin:1rem 0 .2rem;padding:0;list-style:none}
+.gallery figure{margin:0;background:#fff;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.gallery img{aspect-ratio:4/5;object-fit:cover;width:100%}
+.gallery figcaption{font-size:.86rem;font-weight:700;color:var(--black);padding:.5rem .65rem .6rem;line-height:1.3;overflow-wrap:anywhere}
+.ask{display:inline-block;margin-top:.9rem;font-size:.9rem;font-weight:700;color:#0c4a60;background:var(--sky-soft);border:1px dashed #2a9cc4;border-radius:999px;padding:.25rem .8rem}
+.small{font-size:.85rem}
+.site-footer{background:rgba(20,16,18,.97);color:var(--cream);padding:1.5rem 0 2rem;margin-top:2rem;border-top:3px solid var(--sky)}
+.site-footer .col{width:min(100% - 2.5rem,900px)}
+.site-footer p{margin:.45rem 0;font-size:.9rem}
+.site-footer .footer-notice{font-weight:700;font-size:.95rem}
+@media (max-width:1199px){
+  .page-bg{background-image:linear-gradient(90deg,rgba(24,13,8,.86) 0%,rgba(24,13,8,.80) 80%,rgba(24,13,8,.62) 100%),var(--bg-full);
+    background-size:auto,cover;background-position:center,center 45%}
+}
+@media (max-width:640px){
+  :root{--notice-offset:4.6rem}
+  .concept-notice{font-size:.82rem;padding:.5rem .8rem}
+  .page-bg{background-image:linear-gradient(180deg,rgba(24,13,8,.86) 0%,rgba(24,13,8,.80) 50%,rgba(24,13,8,.15) 78%,rgba(24,13,8,.10) 100%),var(--bg-full);
+    background-size:auto,cover;background-position:center,center center}
+  .col{width:calc(100% - 2rem);margin-left:1rem;margin-right:1rem}
+  .hero{min-height:calc(100svh - var(--notice-offset) - 3.5rem);align-items:flex-start;padding:1.2rem 0 2rem}
+  h1 .t{font-size:clamp(1.45rem,6.4vw,1.9rem)}
+  h1 .b{font-size:clamp(1.7rem,7vw,2.4rem)}
+  .lede{font-size:1rem}
+  main section.panel{padding:1.25rem 1.05rem}
+  .gallery{gap:.5rem}
+}
+@media (max-width:360px){:root{--notice-offset:5.6rem}.eyebrow{font-size:.74rem;letter-spacing:.07em}}
+.form-panel{background:#fff6ec}
+.live-note{margin:.6rem 0 1rem;background:var(--sky-soft);border:1px solid #9fdcf1;border-radius:14px;padding:.7rem .9rem;color:#0c4a60;font-size:.92rem;font-weight:600;overflow-wrap:anywhere}
+.order-form fieldset.wrap{border:0;margin:0;padding:0;min-width:0}
+.field{margin:0 0 1rem}
+.field > label,.legend{display:block;font-weight:800;color:var(--black);margin-bottom:.3rem;font-size:.98rem}
+.req{color:#a3123d;font-weight:800}
+.hint{display:block;font-size:.86rem;color:var(--muted);margin:.15rem 0 .35rem;overflow-wrap:anywhere}
+.order-form input[type=text],.order-form input[type=email],.order-form input[type=tel],.order-form input[type=number],.order-form input[type=date],.order-form select,.order-form textarea{
+  width:100%;font:inherit;font-size:1rem;color:var(--ink);background:#fff;border:2px solid #8a6a55;border-radius:12px;padding:.6rem .75rem;min-height:46px}
+.order-form textarea{min-height:6.5rem;resize:vertical}
+.order-form input:focus-visible,.order-form select:focus-visible,.order-form textarea:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-color:var(--focus)}
+.order-form [aria-invalid="true"]{border-color:#a3123d;background:#fff5f7}
+.contact-hint{margin:-.6rem 0 1rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.row-treat{display:grid;grid-template-columns:1fr 6.5rem;gap:.75rem}
+.choice-group{border:0;margin:0 0 1rem;padding:0;min-width:0}
+.choice-group legend{padding:0}
+.choices{display:flex;flex-wrap:wrap;gap:.6rem}
+.choice{display:flex;align-items:center;gap:.5rem;background:#fff;border:2px solid #8a6a55;border-radius:999px;padding:.45rem 1rem .45rem .7rem;min-height:44px;font-weight:700;cursor:pointer}
+.choice input{width:1.15rem;height:1.15rem;margin:0;accent-color:var(--pink)}
+.choice:focus-within{outline:3px solid var(--focus);outline-offset:2px}
+.fee{margin:.5rem 0 0;font-size:.9rem;font-weight:700;color:var(--gold-deep);overflow-wrap:anywhere}
+.field-error{margin:.3rem 0 0;color:#a3123d;font-weight:700;font-size:.88rem}
+.error-summary{background:#fff0f3;border:2px solid #a3123d;border-radius:14px;padding:.75rem 1rem;margin:0 0 1rem;color:#7a0f2e}
+.error-summary h3{color:#7a0f2e;margin:0 0 .3rem}
+.error-summary ul{margin:.2rem 0 0;padding-left:1.2rem}
+.btn-submit{width:100%;background:var(--pink);color:var(--black);font-size:1.05rem;cursor:pointer}
+.btn-submit:hover{background:#ff7ab3}
+.btn-submit[disabled]{cursor:not-allowed;opacity:1;background:#e2d6cc;color:#4a3a30;border-color:#b9a493}
+.nojs-note{background:#fff0f3;border:2px dashed #a3123d;color:#7a0f2e;border-radius:12px;padding:.6rem .9rem;font-weight:700;margin:0 0 1rem}
+.confirm{background:#f2fbe9;border:2px solid #4c7a1c;border-radius:16px;padding:1.1rem 1.2rem;color:#1f3a08}
+.confirm h3{color:#1f3a08;font-size:1.15rem;margin:0 0 .4rem}
+.confirm p{margin:.35rem 0}
+.alt-ig{margin:1rem 0 0;color:var(--muted);font-size:.92rem;overflow-wrap:anywhere}
+.alt-ig .h{font-weight:800;color:var(--black)}
+.good-to-know{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:.5rem}
+.good-to-know li{background:#fff;border:1px solid var(--line);border-left:5px solid var(--gold);border-radius:12px;padding:.55rem .85rem;font-size:.94rem;overflow-wrap:anywhere}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+[hidden]{display:none!important}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+@media (max-width:360px){.row-treat{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="concept-notice" role="note" aria-label="Concept demo notice">Unofficial concept demo by Automation Architects — not the business’s official website.</div>
+<div class="page-bg" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="col">
+    <span class="wordmark">{{BUSINESS_NAME}}</span>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#treats">Treats</a>
+      <a href="#order">Order</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <div class="hero">
+    <div class="col">
+      <p class="eyebrow">{{TREAT_1}} · {{TREAT_2}} · {{TREAT_3}}</p>
+      <h1><span class="t">{{BUSINESS_NAME}}</span> <span class="b">{{CITY}}</span></h1>
+      <p class="handle-line">On Instagram <span class="h">{{IG_HANDLE}}</span> · {{CITY}}</p>
+      <div class="hero-chip">
+        <p class="lede">Sweet treats made to order — request yours online and give {{NOTICE_DAYS}} notice.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#order">Request an order</a>
+          <a class="btn btn-ghost" href="#treats">See the treats</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <section class="panel" id="treats" aria-labelledby="treats-h">
+      <h2 id="treats-h">The treats</h2>
+      <p class="muted">A few recent bakes.</p>
+      <ul class="gallery">
+        <li><figure><img src="assets/g_macarons.webp" width="640" height="640" alt="Two stacks of pink, brown, yellow, white, green, and tan macarons against a blue background"><figcaption>{{TREAT_1}}</figcaption></figure></li>
+        <li><figure><img src="assets/g_donuts.webp" width="640" height="640" alt="Assorted glazed, chocolate, powdered, and nut-topped donuts in a box"><figcaption>{{TREAT_2}}</figcaption></figure></li>
+        <li><figure><img src="assets/g_oatmeal.webp" width="640" height="640" alt="Oatmeal raisin cookies on a white plate"><figcaption>{{TREAT_3}}</figcaption></figure></li>
+      </ul>
+      <p class="ask">Full menu, flavors &amp; prices — ask when you order</p>
+    </section>
+
+    <section class="panel form-panel" id="order" aria-labelledby="order-h">
+      <h2 id="order-h">Request an order</h2>
+      <p class="muted">Tell us what you’d like and when you need it.</p>
+      <p class="live-note" id="live-note">In the live version, {{BUSINESS_NAME}} would get an email or text for every request so they can confirm it.</p>
+      <noscript><p class="nojs-note">This demo order form needs JavaScript turned on. Nothing can be sent from it either way.</p></noscript>
+
+      <form class="order-form" id="order-form" novalidate aria-describedby="live-note">
+        <div class="error-summary" id="error-summary" role="alert" tabindex="-1" hidden></div>
+        <fieldset class="wrap" id="form-fields" disabled>
+          <div class="field">
+            <label for="f-name">Name <span class="req" aria-hidden="true">*</span></label>
+            <input type="text" id="f-name" autocomplete="name" required aria-describedby="f-name-err">
+            <p class="field-error" id="f-name-err" hidden></p>
+          </div>
+          <div class="row2">
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input type="email" id="f-email" autocomplete="email" inputmode="email" aria-describedby="contact-hint f-email-err">
+              <p class="field-error" id="f-email-err" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-phone">Phone</label>
+              <input type="tel" id="f-phone" autocomplete="tel" inputmode="tel" aria-describedby="contact-hint f-phone-err">
+              <p class="field-error" id="f-phone-err" hidden></p>
+            </div>
+          </div>
+          <p class="hint contact-hint" id="contact-hint">Give at least one (email or phone) so your order can be confirmed. <span class="req" aria-hidden="true">*</span></p>
+          <div class="row-treat">
+            <div class="field">
+              <label for="f-treat">Treat <span class="req" aria-hidden="true">*</span></label>
+              <select id="f-treat" required aria-describedby="f-treat-err">
+                <option value="">Choose a treat…</option>
+                <option>{{TREAT_1}}</option>
+                <option>{{TREAT_2}}</option>
+                <option>{{TREAT_3}}</option>
+                <option>Something else</option>
+              </select>
+              <p class="field-error" id="f-treat-err" hidden></p>
+            </div>
+            <div class="field">
+              <label for="f-qty">Quantity <span class="req" aria-hidden="true">*</span></label>
+              <input type="number" id="f-qty" min="1" max="200" step="1" value="1" inputmode="numeric" required aria-describedby="f-qty-err">
+              <p class="field-error" id="f-qty-err" hidden></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-date">Date needed <span class="req" aria-hidden="true">*</span></label>
+            <span class="hint" id="f-date-hint">Please order at least {{NOTICE_DAYS}} ahead.</span>
+            <input type="date" id="f-date" required aria-describedby="f-date-hint f-date-err">
+            <p class="field-error" id="f-date-err" hidden></p>
+          </div>
+          <fieldset class="choice-group" aria-describedby="f-fulfil-err">
+            <legend class="legend">Pickup or delivery <span class="req" aria-hidden="true">*</span></legend>
+            <div class="choices">
+              <label class="choice" for="f-pickup"><input type="radio" id="f-pickup" name="fulfillment" value="pickup" required> Pickup</label>
+              <label class="choice" for="f-delivery"><input type="radio" id="f-delivery" name="fulfillment" value="delivery"> Delivery</label>
+            </div>
+            <p class="field-error" id="f-fulfil-err" hidden></p>
+          </fieldset>
+          <div class="field" id="address-wrap" hidden>
+            <label for="f-address">Delivery address <span class="req" aria-hidden="true">*</span></label>
+            <textarea id="f-address" rows="2" autocomplete="street-address" aria-describedby="f-fee f-address-err"></textarea>
+            <p class="fee" id="f-fee">Delivery is {{DELIVERY_FEE}}, depending on distance.</p>
+            <p class="field-error" id="f-address-err" hidden></p>
+          </div>
+          <div class="field">
+            <label for="f-notes">Notes</label>
+            <span class="hint" id="f-notes-hint">Flavors, mix of treats, occasion, allergies — anything helpful.</span>
+            <textarea id="f-notes" rows="4" aria-describedby="f-notes-hint"></textarea>
+          </div>
+          <p class="hint"><span class="req" aria-hidden="true">*</span> Required</p>
+          <button type="submit" class="btn btn-submit" id="f-submit">Send order request (demo)</button>
+        </fieldset>
+      </form>
+
+      <div class="confirm" id="confirm" role="status" aria-live="polite" tabindex="-1" hidden></div>
+
+      <ul class="good-to-know" aria-label="Good to know">
+        <li>Orders need to be placed {{NOTICE_DAYS}} before you need them.</li>
+        <li>{{DELIVERY_FEE}} delivery fee, depending on distance.</li>
+        <li>Full menu, flavors &amp; prices — ask when you order.</li>
+      </ul>
+      <p class="alt-ig">Prefer Instagram? Message <span class="h">{{IG_HANDLE}}</span></p>
+      <p class="muted small">Order timing and delivery details from the {{IG_HANDLE}} Instagram bio.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="col">
+    <p class="footer-notice">Unofficial concept demo by Automation Architects — not the business’s official website.</p>
+    <p>Photo credit: Macarons Pixabay.jpg, CC0 (Pixabay / pexels; also cropped for the page background) · Donuts in a box with different types.JPG by Tomwsulcer, CC0 · Oatmeal cookies on a plate.jpg by Evan Prodromou, CC0. Wikimedia Commons.</p>
+  </div>
+</footer>
+<script>
+/* Demo-only order form. Nothing is transmitted or stored: no network calls, no storage, no navigation. */
+(function () {
+  'use strict';
+  var form = document.getElementById('order-form');
+  var fields = document.getElementById('form-fields');
+  var summary = document.getElementById('error-summary');
+  var confirmBox = document.getElementById('confirm');
+  var addrWrap = document.getElementById('address-wrap');
+  var addr = document.getElementById('f-address');
+  var date = document.getElementById('f-date');
+  var $ = function (id) { return document.getElementById(id); };
+  /* {{NOTICE_DAYS}} — set this number to the lead time shown in the hint. */
+  var MIN_LEAD_DAYS = 1;
+
+  function iso(d) { var m = d.getMonth() + 1, day = d.getDate(); return d.getFullYear() + '-' + (m < 10 ? '0' : '') + m + '-' + (day < 10 ? '0' : '') + day; }
+  var minDay = new Date(); minDay.setDate(minDay.getDate() + MIN_LEAD_DAYS);
+  date.min = iso(minDay);
+
+  function syncAddress() {
+    var delivery = $('f-delivery').checked;
+    addrWrap.hidden = !delivery;
+    addr.required = delivery;
+    if (!delivery) { setErr(addr, $('f-address-err'), ''); }
+  }
+  $('f-pickup').addEventListener('change', syncAddress);
+  $('f-delivery').addEventListener('change', syncAddress);
+
+  function setErr(input, errEl, msg) {
+    errEl.textContent = msg;
+    errEl.hidden = !msg;
+    if (input) { if (msg) { input.setAttribute('aria-invalid', 'true'); } else { input.removeAttribute('aria-invalid'); } }
+  }
+
+  function validate() {
+    var errs = [];
+    function check(input, errId, label, msg) {
+      var ok = input.checkValidity();
+      setErr(input, $(errId), ok ? '' : msg);
+      if (!ok) { errs.push({ input: input, text: label + ': ' + msg }); }
+    }
+    check($('f-name'), 'f-name-err', 'Name', 'Please enter your name.');
+    var email = $('f-email'), phone = $('f-phone');
+    var emailOk = email.checkValidity(), hasEmail = email.value.trim() !== '', hasPhone = phone.value.trim() !== '';
+    setErr(email, $('f-email-err'), ''); setErr(phone, $('f-phone-err'), '');
+    if (!emailOk) { setErr(email, $('f-email-err'), 'Please enter a valid email.'); errs.push({ input: email, text: 'Email: please enter a valid email.' }); }
+    else if (!hasEmail && !hasPhone) { setErr(email, $('f-email-err'), 'Add an email or a phone number.'); setErr(phone, $('f-phone-err'), 'Add a phone number or an email.'); errs.push({ input: email, text: 'Contact: add an email or a phone number.' }); }
+    check($('f-treat'), 'f-treat-err', 'Treat', 'Please choose a treat.');
+    check($('f-qty'), 'f-qty-err', 'Quantity', 'Enter a quantity of 1 or more.');
+    check(date, 'f-date-err', 'Date needed', date.value ? 'Please pick a date at least {{NOTICE_DAYS}} ahead.' : 'Please pick a date.');
+    var fulfil = $('f-pickup').checked || $('f-delivery').checked;
+    setErr(null, $('f-fulfil-err'), fulfil ? '' : 'Choose pickup or delivery.');
+    if (!fulfil) { errs.push({ input: $('f-pickup'), text: 'Pickup or delivery: please choose one.' }); }
+    if (addr.required) { check(addr, 'f-address-err', 'Delivery address', 'Please enter the delivery address.'); }
+    return errs;
+  }
+
+  function showSummary(errs) {
+    summary.textContent = '';
+    if (!errs.length) { summary.hidden = true; return; }
+    var h = document.createElement('h3'); h.textContent = 'Please fix ' + errs.length + (errs.length === 1 ? ' item' : ' items') + ':';
+    var ul = document.createElement('ul');
+    errs.forEach(function (e) { var li = document.createElement('li'); li.textContent = e.text; ul.appendChild(li); });
+    summary.appendChild(h); summary.appendChild(ul);
+    summary.hidden = false;
+  }
+
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var errs = validate();
+    showSummary(errs);
+    if (errs.length) { errs[0].input.focus(); return; }
+    fields.disabled = true;
+    form.hidden = true;
+    $('live-note').hidden = true;
+    var h = document.createElement('h3'); h.textContent = 'Demo only — nothing was sent.';
+    var p1 = document.createElement('p'); p1.textContent = 'This is a concept preview, so your request didn’t go to {{BUSINESS_NAME}}.';
+    var p2 = document.createElement('p'); p2.textContent = 'In the live version, {{BUSINESS_NAME}} would get an email or text for every request so they can confirm it.';
+    confirmBox.textContent = '';
+    confirmBox.appendChild(h); confirmBox.appendChild(p1); confirmBox.appendChild(p2);
+    confirmBox.hidden = false;
+    confirmBox.focus();
+  });
+
+  fields.disabled = false; /* form stays disabled (cannot submit) without JavaScript */
+})();
+</script>
+</body>
+</html>
